@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap');
+
+:root { 
+    --bg-color: #080808;
+    --card-bg: #000000;
+    --border-color: #ffffff;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --font-family: 'Fira Code', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    /* Desactive le lissage de police pour un rendu plus net/pixel */
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+}
+
+/* Fond du site avec motif dithered (trame de points monochrome) */
+body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(#222222 15%, transparent 16%);
+    background-size: 4px 4px;
+    color: var(--text-main);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header style Retro Dithered */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--card-bg);
+    border-bottom: 2px dashed var(--border-color);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: var(--text-main);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2px 4px;
+}
+
+main {
+    flex: 1;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 2px dashed var(--border-color);
+    background: repeating-linear-gradient(
+      0deg,
+      #000000,
+      #000000 2px,
+      #0b0b0b 2px,
+      #0b0b0b 4px
+    );
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    text-shadow: 2px 2px 0px #555555;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Bouton style Pixel Art / Retro Dithered */
+.btn {
+    background-color: #000000;
+    color: var(--text-main);
+    border: 2px solid var(--border-color);
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--text-main);
+    transition: all 0.1s ease;
+}
+
+.btn:hover {
+    background-color: var(--text-main);
+    color: #000000;
+    box-shadow: 2px 2px 0px #888888;
+    transform: translate(2px, 2px);
+}
+
+/* Section Content */
+.content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    box-shadow: 6px 6px 0px #333333;
+}
+
+.content h2 {
+    margin-bottom: 15px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-bottom: 1px dashed var(--text-muted);
+    padding-bottom: 5px;
+}
+
+.content p {
+    color: var(--text-muted);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.2rem;
+    background-color: var(--card-bg);
+    border-top: 2px dashed var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Effet trame d'écran cathodique / CRT subtle */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+    background-size: 100% 4px;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0.6;
+}

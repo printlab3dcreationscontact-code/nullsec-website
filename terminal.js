@@ -1,55 +1,66 @@
-documents.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('term-input');
-    const output = document.getElementById('term-output');
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("term-input");
+    const output = document.getElementById("term-output");
 
     if (!input || !output) return;
 
-    const commands = {
-        'help': 'Available commands: help, scan, status, clear',
-        'scan': 'Scanning network... [100%] No threats found.',
-        'status': 'SYSTEM STATUS: 100% OPERATIONAL | ENCRYPTION: ACTIVE',
-        'whoami': 'User level:  GUEST_ANONYMOUS'
-    };
+    // Message de bienvenue du terminal
+    appendOutput("NullSec OS v1.0.4 loaded.");
+    appendOutput("Type 'help' for a list of available commands.");
 
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const cmd = input.value.trim().toLowerCase();
-            const line = document.createElement('div');
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            const command = input.value.trim().toLowerCase();
+            if (command !== "") {
+                appendOutput(`> ${input.value}`);
+                handleCommand(command);
+                input.value = "";
+                output.scrollTop = output.scrollHeight;
+            }
+        }
+    });
 
-        line.innerHTML = `<span style="color: #888;">> ${cmd}</span>`;
-            output.appendChild(line);
+    function appendOutput(text) {
+        const line = document.createElement("div");
+        line.className = "term-line";
+        line.textContent = text;
+        output.appendChild(line);
+    }
 
-            if (cmd === 'clear') {
-                output.innerHTML = '';
-            } else if (commands[cmd]) {
-                const response = document.createElement('div');
-                response.textContent = commands[cmd];
-                output.appendChild(response);
+    function handleCommand(cmd) {
+        switch (cmd) {
+            case "help":
+                appendOutput("Available commands:");
+                appendOutput("  help     - Show this list");
+                appendOutput("  about    - About NullSec");
+                appendOutput("  tiktok   - Links to our TikTok channels");
+                appendOutput("  status   - Check system status");
+                appendOutput("  clear    - Clear the terminal screen");
+                break;
 
+            case "about":
+                appendOutput("NullSec provides next-gen cybersecurity solutions & ethical hacking intelligence.");
+                break;
 
+            case "tiktok":
+                appendOutput("TikTok Accounts:");
+                appendOutput("  - Main: @aidropz1");
+                appendOutput("  - Second: @ardeon65");
+                break;
 
-   
+            case "status":
+                appendOutput("System Status: ALL SYSTEMS OPERATIONAL");
+                appendOutput("Firewall: ACTIVE");
+                appendOutput("Encryption: AES-256-GCM");
+                break;
 
+            case "clear":
+                output.innerHTML = "";
+                break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //We're creating a fake terminal where people can enter commands.
-        //okkk
-        //i'll think abt  other ideas
-        //ok
-        //uh 
-        //Maybe we could add our TikToks with a button yes or no ? yesss
-        okay 
-        //I'll leave it to you.
-        //okkk
+            default:
+                appendOutput(`Command not recognized: '${cmd}'. Type 'help' for options.`);
+                break;
+        }
+    }
+});

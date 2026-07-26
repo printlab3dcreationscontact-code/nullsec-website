@@ -746,6 +746,174 @@ body::after {
         100% 4px;
 }
 
+
+/* Hidden NULLSEC terminal easter egg */
+#nullsec-easter-egg {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    background: #000000;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0.8s;
+}
+
+#nullsec-easter-egg.is-active {
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0s linear 0s;
+}
+
+#nullsec-easter-canvas {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    transition: opacity 0.7s ease 0.25s;
+}
+
+#nullsec-easter-egg.is-active #nullsec-easter-canvas {
+    opacity: 0.58;
+}
+
+.nullsec-easter-title {
+    position: relative;
+    z-index: 2;
+
+    padding-left: 0.12em;
+
+    color: #b7ffc8;
+
+    font-size: clamp(4rem, 18vw, 13rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: 0.12em;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    opacity: 0;
+    transform: scale(0.86);
+
+    text-shadow:
+        0 0 6px #ffffff,
+        0 0 14px #00ff41,
+        0 0 35px rgba(0, 255, 65, 0.9),
+        0 0 70px rgba(0, 255, 65, 0.45);
+
+    filter: blur(8px);
+
+    transition:
+        opacity 0.45s ease 0.65s,
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s,
+        filter 0.55s ease 0.55s;
+}
+
+#nullsec-easter-egg.is-active .nullsec-easter-title {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+}
+
+.nullsec-easter-title::before,
+.nullsec-easter-title::after {
+    content: attr(data-text);
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0;
+}
+
+#nullsec-easter-egg.is-active .nullsec-easter-title::before {
+    color: #00ff41;
+
+    text-shadow:
+        -6px 0 12px rgba(0, 255, 65, 0.8);
+
+    clip-path: inset(8% 0 58% 0);
+
+    animation:
+        nullsecGlitchTop 0.75s steps(2, end) 0.95s 4;
+}
+
+#nullsec-easter-egg.is-active .nullsec-easter-title::after {
+    color: #ffffff;
+
+    text-shadow:
+        6px 0 12px rgba(255, 255, 255, 0.45);
+
+    clip-path: inset(57% 0 10% 0);
+
+    animation:
+        nullsecGlitchBottom 0.68s steps(2, end) 1.05s 4;
+}
+
+@keyframes nullsecGlitchTop {
+    0%,
+    100% {
+        opacity: 0;
+        transform: translate(0);
+    }
+
+    18% {
+        opacity: 0.9;
+        transform: translate(-12px, -3px);
+    }
+
+    42% {
+        opacity: 0.6;
+        transform: translate(8px, 2px);
+    }
+
+    63% {
+        opacity: 0.85;
+        transform: translate(-5px, 1px);
+    }
+}
+
+@keyframes nullsecGlitchBottom {
+    0%,
+    100% {
+        opacity: 0;
+        transform: translate(0);
+    }
+
+    20% {
+        opacity: 0.75;
+        transform: translate(11px, 3px);
+    }
+
+    48% {
+        opacity: 0.55;
+        transform: translate(-9px, -1px);
+    }
+
+    70% {
+        opacity: 0.8;
+        transform: translate(4px, 2px);
+    }
+}
+
 @media screen and (max-width: 768px) {
     header {
         padding: 12px 10px;
@@ -851,7 +1019,16 @@ body::after {
     .boot-line,
     .boot-cursor,
     .glitch.glitch-active::before,
-    .glitch.glitch-active::after {
+    .glitch.glitch-active::after,
+    #nullsec-easter-egg.is-active .nullsec-easter-title::before,
+    #nullsec-easter-egg.is-active .nullsec-easter-title::after {
         animation: none;
+    }
+
+    #nullsec-easter-egg,
+    #nullsec-easter-canvas,
+    .nullsec-easter-title {
+        transition-duration: 0.01ms;
+        transition-delay: 0s;
     }
 }

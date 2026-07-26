@@ -236,14 +236,21 @@ header {
 
     background: transparent;
 
+    
     color: #ffffff;
+    font-weight: 900;
+    text-shadow: 
+        0 0 1px #ffffff,
+        0 0 2px rgba(255, 255, 255, 0.9),
+        0 0 5px rgba(255, 255, 255, 0.5);
+    filter: brightness(1.5) contrast(1.2);
 
     font-family:
         'Courier New',
         Courier,
         monospace;
 
-    font-size: 2px;
+    font-size: 2.2px; 
     line-height: 1;
 
     letter-spacing: 0;

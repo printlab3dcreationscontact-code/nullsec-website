@@ -920,7 +920,7 @@ body::after {
     }
 
     .ascii-logo {
-        font-size: 1.35px;
+        font-size: 1.8px;
     }
 
     nav ul {
@@ -983,7 +983,7 @@ body::after {
 
 @media screen and (max-width: 480px) {
     .ascii-logo {
-        font-size: 0.95px;
+        font-size: 1.6px;
     }
 
     nav ul {

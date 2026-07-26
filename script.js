@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroTitle = document.querySelector(".hero h1");
     const discoverBtn = document.getElementById("discover-btn");
     const aboutSection = document.getElementById("about");
+    const aboutTyping = document.getElementById("about-typing");
     const navLinks = document.querySelectorAll("nav a");
     const glitchElements = document.querySelectorAll(".glitch");
 
@@ -486,6 +487,86 @@ document.addEventListener("DOMContentLoaded", () => {
             400
         );
     }
+
+
+
+    function setupAboutTyping() {
+        if (!aboutTyping) return;
+
+        const fullText =
+            aboutTyping.dataset.typingText ||
+            aboutTyping.textContent ||
+            "";
+
+        if (reducedMotion) {
+            aboutTyping.textContent = fullText;
+            return;
+        }
+
+        let hasTyped = false;
+        aboutTyping.textContent = "";
+
+        function typeAboutText() {
+            if (hasTyped) return;
+            hasTyped = true;
+            aboutTyping.textContent = "";
+            aboutTyping.classList.add("is-typing");
+
+            let index = 0;
+
+            function typeNextCharacter() {
+                aboutTyping.textContent =
+                    fullText.slice(0, index + 1);
+
+                index++;
+
+                if (index < fullText.length) {
+                    const character = fullText[index - 1];
+                    const delay = /[.,!?]/.test(character)
+                        ? 150
+                        : 45 + Math.random() * 55;
+
+                    setTimeout(typeNextCharacter, delay);
+                    return;
+                }
+
+                aboutTyping.classList.remove("is-typing");
+                aboutTyping.classList.add("typing-complete");
+            }
+
+            typeNextCharacter();
+        }
+
+        if (!("IntersectionObserver" in window)) {
+            typeAboutText();
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                    observer.disconnect();
+                    typeAboutText();
+                }
+            },
+            { threshold: 0.45 }
+        );
+
+        observer.observe(aboutTyping);
+    }
+
+    function setupHoverGlitches() {
+        const hoverTargets = document.querySelectorAll(
+            "a, .btn, .tiktok-card"
+        );
+
+        hoverTargets.forEach((element) => {
+            element.classList.add("glitch-hover");
+        });
+    }
+
+    setupAboutTyping();
+    setupHoverGlitches();
 
     if (
         discoverBtn &&

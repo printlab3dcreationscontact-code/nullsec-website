@@ -1011,6 +1011,126 @@ body::after {
     }
 }
 
+
+
+/* Terminal live date/time */
+.terminal-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--text-muted);
+}
+
+.terminal-heading-row h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.terminal-clock {
+    flex: 0 0 auto;
+    color: var(--matrix-green);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.35);
+}
+
+/* About typewriter cursor */
+#about-typing {
+    min-height: 1.5em;
+}
+
+#about-typing.is-typing::after {
+    content: "_";
+    display: inline-block;
+    margin-left: 2px;
+    color: var(--matrix-green);
+    animation: blink 0.55s steps(1, end) infinite;
+}
+
+#about-typing.typing-complete::after {
+    content: "_";
+    display: inline-block;
+    margin-left: 2px;
+    color: var(--matrix-green);
+    opacity: 0.6;
+}
+
+/* Glitch-on-hover treatment for links, buttons and cards */
+.glitch-hover {
+    will-change: transform, filter;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    a.glitch-hover:hover,
+    a.glitch-hover:focus-visible,
+    button.glitch-hover:hover,
+    button.glitch-hover:focus-visible {
+        animation: hoverGlitchText 0.24s steps(2, end) 1;
+        text-shadow:
+            -2px 0 rgba(0, 255, 65, 0.9),
+            2px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .tiktok-card.glitch-hover:hover,
+    .tiktok-card.glitch-hover:focus-within {
+        animation: hoverGlitchCard 0.28s steps(2, end) 1;
+        box-shadow:
+            -5px 0 0 rgba(0, 255, 65, 0.45),
+            5px 0 0 rgba(255, 255, 255, 0.25);
+    }
+}
+
+@keyframes hoverGlitchText {
+    0%, 100% {
+        transform: translate(0, 0) skewX(0deg);
+        filter: none;
+    }
+    25% {
+        transform: translate(-2px, 1px) skewX(-5deg);
+        filter: contrast(1.35);
+    }
+    50% {
+        transform: translate(2px, -1px) skewX(4deg);
+        filter: brightness(1.3);
+    }
+    75% {
+        transform: translate(-1px, 0) skewX(-2deg);
+        filter: contrast(1.15);
+    }
+}
+
+@keyframes hoverGlitchCard {
+    0%, 100% {
+        transform: translate(0, 0);
+        filter: none;
+    }
+    20% {
+        transform: translate(-3px, 1px) skewX(-0.7deg);
+        filter: contrast(1.3);
+    }
+    45% {
+        transform: translate(3px, -1px) skewX(0.7deg);
+        filter: brightness(1.18);
+    }
+    70% {
+        transform: translate(-1px, 1px);
+        filter: contrast(1.1);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .terminal-heading-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1018,6 +1138,10 @@ body::after {
 
     .boot-line,
     .boot-cursor,
+    #about-typing.is-typing::after,
+    a.glitch-hover,
+    button.glitch-hover,
+    .tiktok-card.glitch-hover,
     .glitch.glitch-active::before,
     .glitch.glitch-active::after,
     #nullsec-easter-egg.is-active .nullsec-easter-title::before,

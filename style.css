@@ -317,3 +317,22 @@ body::after {
     border-color: #ffffff;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 40px 15px; 
+        overflow-x: hidden;  
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;    
+        word-break: break-all;  
+        max-width: 100%;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+}

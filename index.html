@@ -6,17 +6,29 @@
     <title>NullSec</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Style rapide pour centrer et styliser le logo proprement */
+        /* Header en ligne : logo à gauche, menu à droite */
         header {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            padding: 15px 0;
+            justify-content: space-between;
+            padding: 10px 20px;
         }
         .logo {
-            text-align: center;
-            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -24,7 +36,7 @@
     
     <header>
         <div class="logo">
-            <pre style="font-family: 'Courier New', Courier, monospace; font-size: 2px; line-height: 1; color: #ffffff; background-color: transparent; letter-spacing: 0; margin: 0 auto; text-align: center;">
+            <pre style="font-family: 'Courier New', Courier, monospace; font-size: 2px; line-height: 1; color: #ffffff; background-color: transparent; letter-spacing: 0; margin: 0; padding: 0;">
 ....................................................................................................................................................................
 .........................................................................:ddddddddd:................................................................
 ......................................................................:x0kkkkkkkkkk0kx:...............................................................

@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NullSec</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 0;
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-    </style>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
+
 <body>
-    
-    <header>
-        <div class="logo">
-            <pre style="font-family: 'Courier New', Courier, monospace; font-size: 2px; line-height: 1; color: #ffffff; background-color: transparent; letter-spacing: 0; margin: 0 auto; text-align: center;">
+
+    <div id="boot-screen">
+        <div class="boot-terminal">
+            <div class="boot-logo glitch" data-text="NULLSEC">NULLSEC</div>
+            <div id="boot-output"></div>
+            <span class="boot-cursor">_</span>
+        </div>
+    </div>
+
+    <canvas id="matrix-bg"></canvas>
+    <div id="mouse-glow"></div>
+
+    <div id="site">
+
+        <header>
+            <div class="logo">
+                <pre class="ascii-logo">
                                       .....................               .
                                  ..::::::::::::::::::::::::::::::::.           .
                               .:::::::::::::::::::::::::::::::::::::::::..     .....
@@ -75,83 +77,125 @@
                               .:::::::::.:.::::::::::::::::::::::::::::::::::::::..
                                  .:::::::::.:.::::::::::::::::::::::::::::::::::..
                                       .....................................
-            </pre>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero" id="hero">
-            <h1>Welcome to NullSec</h1>
-            <p>Next-gen cybersecurity solutions & ethical hacking intelligence</p>
-            <button class="btn" id="discover-btn">Discover</button>
-        </section>
-
-        <section class="content" id="about">
-            <h2>About</h2>
-            <p>We protect your privacy.</p>
-        </section>
-
-        <!-- SECTION TERMINAL INTERACTIF -->
-        <section class="content terminal-container" id="services">
-            <h2>> TERMINAL_INTERFACE</h2>
-            <div id="term-output"></div>
-            <div class="term-input-line">
-                <span class="prompt">></span>
-                <input type="text" id="term-input" placeholder="Type 'help'..." autocomplete="off" />
+                </pre>
             </div>
-        </section>
 
-        <section class="tiktok-section" id="contact">
-            <h2>LATEST ON TIKTOK</h2>
-            <p>Follow our feeds for quick cybersecurity tips, demos, and updates.</p>
-            
-            <div class="tiktok-grid">
-                <div class="tiktok-card">
-                    <div class="tiktok-preview">
-                        <span class="preview-tag">[VIDEO_01]</span>
-                        <p>Cybersecurity Basics 101</p>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" id="hero">
+                <h1 class="glitch" data-text="Welcome to NullSec">Welcome to NullSec</h1>
+                <p>Next-gen cybersecurity solutions &amp; ethical hacking intelligence</p>
+                <button class="btn" id="discover-btn" type="button">Discover</button>
+            </section>
+
+            <section class="content" id="about">
+                <h2>About</h2>
+                <p>We protect your privacy.</p>
+            </section>
+
+            <section class="content terminal-container" id="services">
+                <h2>&gt; TERMINAL_INTERFACE</h2>
+                <div id="term-output"></div>
+
+                <div class="term-input-line">
+                    <span class="prompt">&gt;</span>
+                    <input
+                        type="text"
+                        id="term-input"
+                        placeholder="Type 'help'..."
+                        autocomplete="off"
+                    >
+                </div>
+            </section>
+
+            <section class="tiktok-section" id="contact">
+                <h2>LATEST ON TIKTOK</h2>
+
+                <p>
+                    Follow our feeds for quick cybersecurity tips,
+                    demos, and updates.
+                </p>
+
+                <div class="tiktok-grid">
+
+                    <div class="tiktok-card">
+                        <div class="tiktok-preview">
+                            <span class="preview-tag">[VIDEO_01]</span>
+                            <p>Cybersecurity Basics 101</p>
+                        </div>
+
+                        <a
+                            href="https://vm.tiktok.com/ZN8J4JbgS/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="tiktok-btn"
+                        >
+                            <span class="btn-icon">▶</span>
+                            Watch on TikTok
+                        </a>
                     </div>
-                    <a href="https://vm.tiktok.com/ZN8J4JbgS/" target="_blank" class="tiktok-btn">
-                        <span class="btn-icon">▶</span> Watch on TikTok
-                    </a>
+
+                    <div class="tiktok-card">
+                        <div class="tiktok-preview">
+                            <span class="preview-tag">[VIDEO_02]</span>
+                            <p>Terminal Tricks &amp; Setup</p>
+                        </div>
+
+                        <a
+                            href="https://vm.tiktok.com/ZN8J41mhu/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="tiktok-btn"
+                        >
+                            <span class="btn-icon">▶</span>
+                            Watch on TikTok
+                        </a>
+                    </div>
+
                 </div>
 
-                <div class="tiktok-card">
-                    <div class="tiktok-preview">
-                        <span class="preview-tag">[VIDEO_02]</span>
-                        <p>Terminal Tricks & Setup</p>
-                    </div>
-                    <a href="https://vm.tiktok.com/ZN8J41mhu/" target="_blank" class="tiktok-btn">
-                        <span class="btn-icon">▶</span> Watch on TikTok
+                <div class="tiktok-channel-wrapper">
+
+                    <a
+                        href="https://www.tiktok.com/@aidropz1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn channel-btn"
+                    >
+                        SUIVEZ NULLSEC SUR TIKTOK
                     </a>
+
+                    <a
+                        href="https://www.tiktok.com/@ardeon65"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn channel-btn"
+                    >
+                        Subscribe to our second account
+                    </a>
+
                 </div>
-            </div>
+            </section>
+        </main>
 
-            
-            <div class="tiktok-channel-wrapper">
-                <a href="https://www.tiktok.com/@aidropz1" target="_blank" class="btn channel-btn">
-                    SUIVEZ NULLSEC SUR TIKTOK
-                </a>
-                <a href="https://www.tiktok.com/@ardeon65" target="_blank" class="btn channel-btn">
-                    Subscribe to our second account.
-                </a>
-            </div>
-        </section>
-    </main>
+        <footer>
+            <p>&copy; 2026 NullSec. All rights reserved.</p>
+        </footer>
 
-    <footer>
-        <p>&copy; 2026 NullSec. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script src="terminal.js" defer></script>
     <script src="script.js" defer></script>
+
 </body>
+
 </html>

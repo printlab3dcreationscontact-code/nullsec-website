@@ -99,11 +99,14 @@
 
             <section class="content" id="about">
                 <h2>About</h2>
-                <p>We protect your privacy.</p>
+                <p id="about-typing" data-typing-text="We protect your privacy.">We protect your privacy.</p>
             </section>
 
             <section class="content terminal-container" id="services">
-                <h2>&gt; TERMINAL_INTERFACE</h2>
+                <div class="terminal-heading-row">
+                    <h2>&gt; TERMINAL_INTERFACE</h2>
+                    <time id="terminal-clock" class="terminal-clock" aria-live="off"></time>
+                </div>
                 <div id="term-output"></div>
 
                 <div class="term-input-line">

@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
             "term-output"
         );
 
+    const terminalClock =
+        document.getElementById(
+            "terminal-clock"
+        );
+
     const easterEgg =
         document.getElementById(
             "nullsec-easter-egg"
@@ -41,6 +46,86 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
         return;
     }
+
+
+
+    function updateTerminalClock() {
+        if (!terminalClock) return;
+
+        const now = new Date();
+        const date = new Intl.DateTimeFormat("en-SE", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).format(now);
+
+        const time = new Intl.DateTimeFormat("en-SE", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+        }).format(now);
+
+        terminalClock.textContent = `${date} // ${time}`;
+        terminalClock.dateTime = now.toISOString();
+    }
+
+    updateTerminalClock();
+    setInterval(updateTerminalClock, 1000);
+
+    let audioContext = null;
+
+    function getAudioContext() {
+        if (audioContext) return audioContext;
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if (!AudioContext) return null;
+
+        audioContext = new AudioContext();
+        return audioContext;
+    }
+
+    function playKeyClick(strength = 1) {
+        const context = getAudioContext();
+        if (!context) return;
+
+        if (context.state === "suspended") {
+            context.resume().catch(() => {});
+        }
+
+        const now = context.currentTime;
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+
+        oscillator.type = "square";
+        oscillator.frequency.setValueAtTime(
+            900 + Math.random() * 500,
+            now
+        );
+        oscillator.frequency.exponentialRampToValueAtTime(
+            180,
+            now + 0.018
+        );
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(
+            0.018 * strength,
+            now + 0.002
+        );
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            now + 0.024
+        );
+
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(now);
+        oscillator.stop(now + 0.026);
+    }
+
 
     function appendOutput(text) {
         const line =
@@ -439,11 +524,25 @@ document.addEventListener("DOMContentLoaded", () => {
         "keydown",
         (event) => {
             if (
+                !event.ctrlKey &&
+                !event.metaKey &&
+                !event.altKey &&
+                (
+                    event.key.length === 1 ||
+                    ["Backspace", "Delete", "Tab"].includes(event.key)
+                )
+            ) {
+                playKeyClick(0.7);
+            }
+
+            if (
                 event.key !==
                 "Enter"
             ) {
                 return;
             }
+
+            playKeyClick(1.35);
 
             const rawCommand =
                 input.value.trim();

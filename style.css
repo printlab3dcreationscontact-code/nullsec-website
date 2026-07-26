@@ -18,10 +18,6 @@
     -moz-osx-font-smoothing: unset;
 }
 
-body, a, button, input {
-    cursor: none !important;
-}
-
 body {
     background-color: var(--bg-color);
     background-image: radial-gradient(#222222 15%, transparent 16%);
@@ -282,42 +278,6 @@ body::after {
     pointer-events: none;
     opacity: 0.6;
 }
-
-.cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    position: fixed;
-    top: -3px;
-    left: -3px;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-.cursor-ring {
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    position: fixed;
-    top: -15px;
-    left: -15px;
-    pointer-events: none;
-    z-index: 9998;
-}
-
-.cursor-dot.active {
-    transform: scale(2);
-    background-color: #000000;
-}
-
-.cursor-ring.active {
-    transform: scale(1.4);
-    border-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
 
 @media screen and (max-width: 768px) {
     .hero {
